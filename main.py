@@ -19,14 +19,14 @@ folder = os.getcwd()
 repo = git.Repo(folder)
 
 def git_push():
-    repo = git.Repo(folder)
-    repo.git.add(update=True)
-    repo.index.commit(str(count))
-    origin = repo.remote(name='origin')
-    origin.push() 
-  
-
-git_push()
+    try:
+        repo = git.Repo(folder)
+        repo.git.add(update=True)
+        repo.index.commit(str(count))
+        origin = repo.remote(name='origin')
+        origin.push()
+    except:
+        print("pizdets")
 
 while True:
     b = str(a)[::-1]
@@ -35,14 +35,14 @@ while True:
     else:
         a = a+int(b)
         count += 1
-        if count % 5000 == 0:
+        if count % 1000 == 0:
             file = open("last_cp.txt",'w')
             file.write(str(count)+"\n")
             file.write(str(a)+"\n")
             file.close()
-            git_push()
             print(count)
             print(a)
+            git_push()
         #print(a)
 
 file = open("last_cp.txt",'w')

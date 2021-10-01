@@ -17,7 +17,16 @@ file.close()
 
 folder = os.getcwd()
 repo = git.Repo(folder)
-git = repo.git
+
+def git_push():
+    repo = git.Repo(folder)
+    repo.git.add(update=True)
+    repo.index.commit(str(count))
+    origin = repo.remote(name='origin')
+    origin.push() 
+  
+
+git_push()
 
 while True:
     b = str(a)[::-1]
@@ -31,9 +40,7 @@ while True:
             file.write(str(count)+"\n")
             file.write(str(a)+"\n")
             file.close()
-            git.add("last_cp.txt")
-            git.commit(str(count))
-            git.push()
+            git_push()
             print(count)
             print(a)
         #print(a)
@@ -42,6 +49,4 @@ file = open("last_cp.txt",'w')
 file.write(str(count)+"\n")
 file.write(str(a)+"\n")
 file.close()
-git.add("last_cp.txt")
-#git.commit(str(count))
-git.push()
+git_push()

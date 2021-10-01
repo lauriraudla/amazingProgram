@@ -41,7 +41,6 @@ while True:
             file.write(str(a)+"\n")
             file.close()
             print(count)
-            print(a)
             git_push()
         #print(a)
 
